@@ -1,21 +1,22 @@
 import React from 'react';
-import { Counter } from './features/counter/Counter';
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import {Layout} from "antd";
 import Cryptocurrencies from "./screens/cryptocurrencies";
 import Markets from "./screens/markets";
 import HeaderBar from "./components/header/header";
 import Exchanges from "./screens/exchanges";
+import Overview from "./screens/overview";
 import './App.less';
 
 const {Content} = Layout
 function App() {
+    const { innerWidth: width, innerHeight: height } = window;
   return (
-      <Layout className="App">
+      <Layout className="App" style={{height: height}}>
           <HeaderBar />
           <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 }}>
               <Routes>
-                  <Route path="overview" element={<Counter />} />
+                  <Route path="/" element={<Overview />} />
                   <Route path="cryptocurrencies" element={<Cryptocurrencies />} />
                   <Route path="exchanges" element={<Exchanges />} />
                   <Route path="markets" element={<Markets />} />
