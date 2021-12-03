@@ -20,7 +20,7 @@ export function * getCurrencies (api) {
   // make the call to the api
   const response = yield call(api.getCurrencies)
   // success?
-  if (response.ok) {
+  if (response.data.status === 'success') {
     // You might need to change the response here - do this with a 'transform',
     // located in ../Transforms/. Otherwise, just pass the data back from the api.
     yield put(CurrenciesActions.currenciesSuccess(response.data))

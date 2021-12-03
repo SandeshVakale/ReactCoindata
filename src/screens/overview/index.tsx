@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import { List, Avatar, Skeleton, Card } from 'antd';
+import { List, Avatar, Skeleton, Card, Divider } from 'antd';
 import { connect } from 'react-redux';
 import _ from 'lodash'
 import './styles.less'
@@ -10,7 +10,7 @@ import {RiCoinsLine, RiHandCoinFill} from 'react-icons/ri';
 import {FaHandHoldingWater} from 'react-icons/fa';
 import {BsCurrencyExchange} from 'react-icons/bs';
 import {SiMarketo} from 'react-icons/si';
-import {useViewport} from "../../hooks";
+import {useViewportWidth} from "../../hooks";
 type OverviewProps = {
     overview: any,
     refCurrencyUuid: any;
@@ -19,12 +19,12 @@ type OverviewProps = {
 const Overview: React.FC<OverviewProps> = (props) => {
     const {overview, refCurrencyUuid, getOverview} = props
 
-    const {width} = useViewport();
+    const {width} = useViewportWidth();
     useEffect(() => {
         getOverview(refCurrencyUuid?.data?.value)
     }, [refCurrencyUuid]);
     return (
-        <div>
+        <div >
             <h1 className='header-title'>Crypto market overview & total market cap</h1>
             <h4 className='header-subtitle'>An overview of the cryptocurrency market, including the total market cap, trading volume and number of coins.</h4>
         <Card >
@@ -40,6 +40,7 @@ const Overview: React.FC<OverviewProps> = (props) => {
                         {width > 620 && <h2 className='content'>{`${refCurrencyUuid.data.sign || refCurrencyUuid.data.symbol} ${_.ceil(_.get(overview, 'payload.data.totalMarketCap'), 5)}`}</h2>}
                     </Skeleton>
                 </List.Item>
+            <Divider/>
                 <List.Item
                 >
                     <Skeleton avatar title={false} active loading={overview.fetching}>
@@ -52,6 +53,7 @@ const Overview: React.FC<OverviewProps> = (props) => {
                         {width > 620 && <h2 className='content'>{`${refCurrencyUuid.data.sign || refCurrencyUuid.data.symbol} ${_.ceil(_.get(overview, 'payload.data.total24hVolume'), 5)}`}</h2>}
                     </Skeleton>
                 </List.Item>
+            <Divider/>
                 <List.Item
                 >
                     <Skeleton avatar title={false} active loading={overview.fetching}>
@@ -63,6 +65,7 @@ const Overview: React.FC<OverviewProps> = (props) => {
                         {width > 620 && <h2 className='content'>{_.get(overview, 'payload.data.totalCoins')}</h2>}
                     </Skeleton>
                 </List.Item>
+            <Divider/>
                 <List.Item
                 >
                     <Skeleton avatar title={false} active loading={overview.fetching}>
@@ -74,6 +77,7 @@ const Overview: React.FC<OverviewProps> = (props) => {
                         {width > 620 && <h2 className='content'>{_.get(overview, 'payload.data.totalExchanges')}</h2>}
                     </Skeleton>
                 </List.Item>
+            <Divider/>
                 <List.Item
                 >
                     <Skeleton avatar title={false} active loading={overview.fetching}>

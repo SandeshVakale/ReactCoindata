@@ -1,7 +1,7 @@
 //import ImmutablePersistenceTransformmmutablePersistenceTransform from '../Services/ImmutablePersistenceTransform'
-//import ImmutablePersistenceTransform from "../Services/ImmutablePersistenceTransform";
+import ImmutablePersistenceTransform from '../services/ImmutablePersistenceTransform';
 // import AsyncStorage from '@react-native-community/async-storage'
-
+//import SeamlessImmutablePersistenceTransform from "redux-immutable-persistence-transform";
 // More info here:  https://shift.infinite.red/shipping-persistant-reducers-7341691232b1
 const REDUX_PERSIST = {
   active: true,
@@ -14,7 +14,7 @@ const REDUX_PERSIST = {
     // Optionally, just specify the keys you DO want stored to persistence.
     // An empty array means 'don't store any reducers' -> infinitered/ignite#409
     // whitelist: [],
-    //transforms: [ImmutablePersistenceTransform]
+    transforms: [ImmutablePersistenceTransform]
   }
 }
 

@@ -1,16 +1,18 @@
 import React from 'react';
 import { Layout, Menu } from 'antd';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { SearchOutlined, SettingFilled } from '@ant-design/icons';
 import './header.less'
-import {useViewport} from "../../hooks";
+import {useViewportWidth} from "../../hooks";
 const {Header} = Layout
 const HeaderBar = () => {
     const navigate = useNavigate();
-    const {width} = useViewport()
+    const location = useLocation();
+    const {width} = useViewportWidth();
+    console.log('location.pathname', location.pathname);
     return <Header className='header'>
         <h1 className='title-header' >Coindata</h1>
-        <Menu theme="dark" mode="horizontal" className={width < 620 ? 'menu-short' : 'menu-long'} defaultSelectedKeys={['overview']}>
+        <Menu theme="dark" mode="horizontal" className={width < 620 ? 'menu-short' : 'menu-long'} defaultSelectedKeys={[location.pathname.substring(1)]}>
             <Menu.Item key={'overview'} className={'item'} onClick={() => navigate('/')}>Overview</Menu.Item>
             <Menu.Item key={'cryptocurrencies'} className={'item'} onClick={() => navigate('cryptocurrencies')}>Cryptocurrencies</Menu.Item>
             <Menu.Item key={'exchanges'} className={'item'} onClick={() => navigate('exchanges')}>Exchanges</Menu.Item>

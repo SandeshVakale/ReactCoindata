@@ -7,14 +7,17 @@ import HeaderBar from "./components/header/header";
 import Exchanges from "./screens/exchanges";
 import Overview from "./screens/overview";
 import './App.less';
+import {useViewportHeight} from "./hooks";
 
 const {Content} = Layout
 function App() {
-    const { innerWidth: width, innerHeight: height } = window;
+  const {height} = useViewportHeight();
+
+  console.log(height);
   return (
-      <Layout className="App" style={{height: height}}>
+      <Layout className="App" >
           <HeaderBar />
-          <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 }}>
+          <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64, marginBottom: 40 }}>
               <Routes>
                   <Route path="/" element={<Overview />} />
                   <Route path="cryptocurrencies" element={<Cryptocurrencies />} />
