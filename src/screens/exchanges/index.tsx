@@ -79,7 +79,7 @@ const Exchanges: React.FC<ExchangesProps> = (props) => {
     return <div className="ag-theme-alpine" style={{height: height - 150, width: width - 100}}>
         <h1 className='header-title'>Top crypto exchanges</h1>
         <h4 className='header-subtitle'>Compare all {exchanges?.payload?.data?.stats?.total ? exchanges?.payload?.data?.stats?.total : 170} top crypto exchanges. The list is sorted by {orderByExchanges.data.name}.</h4>
-        <div className='settings'><Currencies /> <Order type={'exchanges'} /></div>
+        <div className='settings'><Currencies /> <Order type={'exchanges'} /> <Order type={'direction'} /></div>
         {!exchanges.fetching && <AgGridReact
             containerStyle={{height: height - 300, width: width - 100}}
             // turn on AG Grid React UI
