@@ -15,6 +15,7 @@ import _ from 'lodash';
 import {GoThumbsup, GoThumbsdown} from 'react-icons/go';
 import {useViewportHeight, useViewportWidth} from "../../hooks";
 import Currencies from "../../components/currency";
+import Order from "../../components/order";
 type ExchangesProps = { getExchanges: any, exchanges: any, refCurrencyUuid: any, orderDirection: any, orderByExchanges: any }
 const Exchanges: React.FC<ExchangesProps> = (props) => {
 
@@ -66,6 +67,7 @@ const Exchanges: React.FC<ExchangesProps> = (props) => {
         getExchanges(refCurrencyUuid.data.uuid, orderByExchanges.data.value, orderDirection.data.value, 10, 0)
     }, [ refCurrencyUuid, orderByExchanges, orderDirection ])
 
+    console.log('orderByExchanges', orderByExchanges);
 
     let rowData: any[] = [];
     const onChange = (page: number, pageSize: number) => {
@@ -76,8 +78,8 @@ const Exchanges: React.FC<ExchangesProps> = (props) => {
     exchanges?.payload?.data?.exchanges && exchanges?.payload?.data?.exchanges.map((item: any) => rowData.push(item))
     return <div className="ag-theme-alpine" style={{height: height - 150, width: width - 100}}>
         <h1 className='header-title'>Top crypto exchanges</h1>
-        <h4 className='header-subtitle'>Compare all {exchanges?.payload?.data?.stats?.total ? exchanges?.payload?.data?.stats?.total : 170} top crypto exchanges. The list is ranked by {orderByExchanges.data.name}.</h4>
-        <Currencies />
+        <h4 className='header-subtitle'>Compare all {exchanges?.payload?.data?.stats?.total ? exchanges?.payload?.data?.stats?.total : 170} top crypto exchanges. The list is sorted by {orderByExchanges.data.name}.</h4>
+        <div className='settings'><Currencies /> <Order type={'exchanges'} /></div>
         {!exchanges.fetching && <AgGridReact
             containerStyle={{height: height - 300, width: width - 100}}
             // turn on AG Grid React UI
