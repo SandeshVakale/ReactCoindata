@@ -45,7 +45,7 @@ const create = (baseURL = Config.API_URL) => {
   const getCoin = ({ uuid, referenceCurrencyUuid, timePeriod }) => api.get(`coin/${uuid}`, { referenceCurrencyUuid, timePeriod })
   const getCoins = ({ referenceCurrencyUuid, timePeriod, orderBy, orderDirection }) => api.get('coins', { referenceCurrencyUuid, timePeriod, orderBy, orderDirection, limit: 100 })
   const getExchanges = ({ referenceCurrencyUuid, orderBy, orderDirection, limit, offset }) => api.get(`exchanges?limit=${limit}&offset=${offset}&referenceCurrencyUuid=${referenceCurrencyUuid}&orderBy=${orderBy}&orderDirection=${orderDirection}`)
-  const getMarkets = ({ referenceCurrencyUuid, orderBy, orderDirection }) => api.get('markets', { referenceCurrencyUuid, orderBy, orderDirection, limit: 100 })
+  const getMarkets = ({ referenceCurrencyUuid, orderBy, orderDirection, limit, offset }) => api.get(`markets?limit=${limit}&offset=${offset}&referenceCurrencyUuid=${referenceCurrencyUuid}&orderBy=${orderBy}&orderDirection=${orderDirection}`)
   const getMarket = ({uuid, referenceCurrencyUuid}) => api.get(`market/${uuid}`, { referenceCurrencyUuid })
   const getOverview = ({ referenceCurrencyUuid }) => api.get('stats', { referenceCurrencyUuid })
   const getCoinExchanges = ({ uuid, referenceCurrencyUuid, orderDirection }) => api.get(`coin/${uuid}/exchanges`, { referenceCurrencyUuid, orderDirection, limit: 100 })

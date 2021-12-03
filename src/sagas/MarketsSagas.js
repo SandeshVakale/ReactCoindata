@@ -15,14 +15,14 @@ import MarketsActions from '../redux/MarketsRedux'
 // import { MarketsSelectors } from '../redux/MarketsRedux'
 
 export function * getMarkets (api, action) {
-  const { referenceCurrencyUuid, orderBy, orderDirection } = action
+  const { referenceCurrencyUuid, orderBy, orderDirection, limit, offset } = action
   // get current data from Store
   // const currentData = yield select(MarketsSelectors.getData)
   // make the call to the api
-  const response = yield call(api.getMarkets, {referenceCurrencyUuid, orderBy, orderDirection})
+  const response = yield call(api.getMarkets, {referenceCurrencyUuid, orderBy, orderDirection, limit, offset})
 
   // success?
-  if (response.ok) {
+  if (response.data.status === 'success') {
     // You might need to change the response here - do this with a 'transform',
     // located in ../Transforms/. Otherwise, just pass the data back from the api.
     yield put(MarketsActions.marketsSuccess(response.data))

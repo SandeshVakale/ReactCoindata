@@ -13,11 +13,10 @@ const {Content} = Layout
 function App() {
   const {height} = useViewportHeight();
 
-  console.log(height);
   return (
       <Layout className="App" >
           <HeaderBar />
-          <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64, marginBottom: 40 }}>
+          <Content className="site-layout" style={{ padding: '0 50px', marginTop: 40, marginBottom: 40 }}>
               <Routes>
                   <Route path="/" element={<Overview />} />
                   <Route path="cryptocurrencies" element={<Cryptocurrencies />} />

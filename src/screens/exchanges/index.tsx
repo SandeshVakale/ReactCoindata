@@ -64,10 +64,9 @@ const Exchanges: React.FC<ExchangesProps> = (props) => {
         sortable: false
     }
     useEffect(() => {
-        getExchanges(refCurrencyUuid.data.uuid, orderByExchanges.data.value, orderDirection.data.value, 10, 0)
+        getExchanges(refCurrencyUuid.data.uuid, orderByExchanges.data.value, orderDirection.data.value, pageSize, ((page - 1) * pageSize))
     }, [ refCurrencyUuid, orderByExchanges, orderDirection ])
 
-    console.log('orderByExchanges', orderByExchanges);
 
     let rowData: any[] = [];
     const onChange = (page: number, pageSize: number) => {

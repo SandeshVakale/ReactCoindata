@@ -4,7 +4,7 @@ import Immutable from 'seamless-immutable'
 /* ------------- Types and Action Creators ------------- */
 
 const { Types, Creators } = createActions({
-  marketsRequest: ['referenceCurrencyUuid', 'orderBy', 'orderDirection'],
+  marketsRequest: ['referenceCurrencyUuid', 'orderBy', 'orderDirection', 'limit', 'offset'],
   marketsSuccess: ['payload'],
   marketsFailure: ['payload']
 })
