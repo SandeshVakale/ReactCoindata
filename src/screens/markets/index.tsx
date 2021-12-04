@@ -22,9 +22,20 @@ const Markets: React.FC<MarketsProps> = (props) => {
     const { getMarkets, refCurrencyUuid, orderByMarkets, orderDirection, markets } = props
     const [page, setPage] = useState(1)
     const [pageSize, setPageSize] = useState(10)
+    const [gridApi, setGridApi] = useState(null);
     const modules = useMemo( ()=> [ClientSideRowModelModule, RangeSelectionModule, RowGroupingModule, RichSelectModule], [])
     const {height} = useViewportHeight()
     const {width} = useViewportWidth()
+
+    const onGridReady = (params: any) => {
+        setGridApi(params.api);
+    };
+
+    const onSelectionChanged = () => {
+        // @ts-ignore
+        const selectedRows = gridApi.getSelectedRows();
+        console.log(selectedRows);
+    };
 
     function ImageRender(params: any) {
         return (
@@ -94,6 +105,9 @@ const Markets: React.FC<MarketsProps> = (props) => {
             // all other properties as normal...
             className="ag-theme-alpine"
             animateRows={true}
+            rowSelection='single'
+            onGridReady={onGridReady}
+            onSelectionChanged={onSelectionChanged}
             modules={modules}
             columnDefs={columnDefs}
             defaultColDef={defaultColDef}

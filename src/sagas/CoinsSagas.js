@@ -15,13 +15,14 @@ import CoinsActions from '../redux/CoinsRedux'
 // import { CoinsSelectors } from '../redux/CoinsRedux'
 
 export function * getCoins (api, action) {
-  const { referenceCurrencyUuid, timePeriod, orderBy, orderDirection } = action
+  const { referenceCurrencyUuid, timePeriod, orderBy, orderDirection, limit, offset } = action
   // get current data from Store
   // const currentData = yield select(CoinsSelectors.getData)
   // make the call to the api
-  const response = yield call(api.getCoins, { referenceCurrencyUuid, timePeriod, orderBy, orderDirection })
+  console.log(action);
+  const response = yield call(api.getCoins, { referenceCurrencyUuid, timePeriod, orderBy, orderDirection, limit, offset })
   // success?
-  if (response.ok) {
+  if (response.data.status === 'success') {
     // You might need to change the response here - do this with a 'transform',
     // located in ../Transforms/. Otherwise, just pass the data back from the api.
     yield put(CoinsActions.coinsSuccess(response.data))
