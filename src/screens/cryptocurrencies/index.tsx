@@ -143,13 +143,13 @@ const Cryptocurrencies: React.FC<CryptoProps> = (props) => {
         { headerName: 'Sparkline', colId: 'sparkline&color', cellRendererFramework: LineChart },
         { headerName: timePeriod.data.name + ' Change', field: 'change', cellRendererFramework: NameRender },
         { field: '24hVolume', cellRendererFramework: VolumeRender },
-        { field: 'marketCap' },
+        { field: 'marketCap', cellRendererFramework: VolumeRender },
     ]
 
     // never changes, so we can use useMemo
     const defaultColDef = {
         resizable: true,
-        sortable: false
+        sortable: false,
     }
     useEffect(() => {
         getCoins(refCurrencyUuid.data.uuid, timePeriod.data.value, orderBy.data.value, orderDirection.data.value, pageSize, ((page - 1) * pageSize))

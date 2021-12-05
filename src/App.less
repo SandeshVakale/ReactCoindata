@@ -33,6 +33,14 @@ list-content {
   height: 70px;
   width: 200px;
 }
+.ag-cell-focus,.ag-cell-no-focus{
+  border:none !important;
+}
+/* This CSS is to not apply the border for the column having 'no-border' class */
+.no-border.ag-cell:focus{
+  border:none !important;
+  outline: none;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
